@@ -1,0 +1,529 @@
+/* ============================================================
+   UNIVERSAL CSS RESET
+   A comprehensive reset combining best practices from:
+   - Eric Meyer's CSS Reset
+   - Normalize.css
+   - Josh Comeau's Modern CSS Reset
+   - Andy Bell's Modern CSS Reset
+   
+   Purpose: Eliminate browser inconsistencies and provide
+   a clean, predictable baseline for styling.
+   ============================================================ */
+
+/* ---------- 1. BOX-SIZING RESET ---------- */
+/* 
+   Use border-box globally so padding and border are included
+   in an element's total width/height. This makes layout math
+   far more intuitive (e.g., width: 100% won't overflow due
+   to padding). The *, *::before, *::after selector ensures
+   every element and pseudo-element inherits this behavior.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ---------- 2. MARGIN & PADDING RESET ---------- */
+/*
+   Browsers apply default margins and padding to many elements
+   (e.g., <body> has 8px margin, <ul> has 40px padding-left).
+   Removing them all ensures YOU control the spacing, not the
+   browser's user-agent stylesheet.
+*/
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- 3. ROOT / HTML ELEMENT ---------- */
+/*
+   - Set base font-size to 100% to respect user's browser
+     font-size preferences (accessibility best practice).
+   - Use smooth scroll for anchor link navigation (#section),
+     but only when user hasn't requested reduced motion.
+   - text-size-adjust prevents mobile browsers from
+     auto-inflating text sizes in landscape mode.
+   - -webkit-font-smoothing and -moz-osx-font-smoothing
+     improve font rendering on macOS/iOS for a cleaner look.
+   - tab-size normalizes how tab characters render in <pre>.
+*/
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  scroll-behavior: smooth;
+}
+
+/* ---------- 4. BODY DEFAULTS ---------- */
+/*
+   - min-height: 100vh ensures body always fills the viewport
+     height, preventing short-page layout issues (e.g., footer
+     floating in the middle of the screen).
+   - line-height: 1.5 is the WCAG-recommended minimum for
+     body text readability and accessibility.
+   - font-family uses the system font stack so the page loads
+     instantly without waiting for web fonts, and looks native
+     on each OS.
+*/
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    'Liberation Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+/* ---------- 5. HEADING RESET ---------- */
+/*
+   Browsers assign varying font-sizes and font-weights to
+   headings (h1–h6). This reset normalizes them so you
+   intentionally define your own typographic scale.
+   - font-size: inherit prevents random sizing.
+   - font-weight: inherit gives you full control.
+   - text-wrap: balance makes headings wrap more evenly
+     across lines (supported in modern browsers).
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+  text-wrap: balance;
+}
+
+/* ---------- 6. PARAGRAPH & TEXT CONTENT ---------- */
+/*
+   - text-wrap: pretty reduces orphaned words (a single word
+     on the last line) in paragraphs, improving readability.
+   - overflow-wrap: break-word prevents long strings (URLs,
+     hashes) from overflowing their container.
+*/
+p {
+  text-wrap: pretty;
+  overflow-wrap: break-word;
+}
+
+/* ---------- 7. LIST RESET ---------- */
+/*
+   Remove default bullet points and numbering from lists.
+   The [role="list"] selector preserves semantics for
+   screen readers when list-style is removed (some screen
+   readers strip list semantics when list-style: none is
+   applied). Using both selectors covers all use cases.
+*/
+ul,
+ol {
+  list-style: none;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* ---------- 8. LINK RESET ---------- */
+/*
+   - Remove the default underline so you control decoration.
+   - color: inherit makes links match surrounding text color
+     instead of the browser's default blue/purple.
+   - cursor: pointer ensures clickable appearance everywhere.
+   - Removes the gray highlight tap on mobile WebKit browsers.
+*/
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- 9. IMAGE & MEDIA RESET ---------- */
+/*
+   - display: block removes the inline whitespace gap that
+     appears below images by default (inline elements sit on
+     the text baseline, leaving a few pixels of space).
+   - max-width: 100% prevents images from overflowing their
+     container (responsive by default).
+   - height: auto preserves aspect ratio when width changes.
+   - font-style: italic visually distinguishes alt text from
+     surrounding content when images fail to load.
+   - object-fit: cover is a sensible default for images that
+     need to fill their container without distortion.
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  font-style: italic;
+}
+
+/* ---------- 10. FORM ELEMENT RESET ---------- */
+/*
+   By default, form elements (input, button, textarea, select)
+   do NOT inherit font properties from their parent — they use
+   the browser's default font instead.
+   - font: inherit forces them to match your page typography.
+   - color: inherit ensures text color consistency.
+   - letter-spacing: inherit keeps spacing uniform.
+   This is one of the most important resets for consistent UI.
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+/* ---------- 11. BUTTON RESET ---------- */
+/*
+   - Remove the default border and background so buttons
+     start from a clean slate for custom styling.
+   - cursor: pointer gives the expected clickable appearance.
+   - Tap highlight removal for cleaner mobile interactions.
+*/
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- 12. TEXTAREA RESET ---------- */
+/*
+   - resize: vertical prevents users from accidentally
+     resizing a textarea horizontally and breaking layouts,
+     while still allowing vertical resizing for comfort.
+   - Removes the default border for clean custom styling.
+*/
+textarea {
+  resize: vertical;
+  border: none;
+}
+
+/* ---------- 13. TABLE RESET ---------- */
+/*
+   - border-collapse: collapse removes the default spacing
+     between table cells, giving you a clean grid.
+   - border-spacing: 0 is a fallback for older browsers.
+   - caption-side: bottom moves captions below the table,
+     which is generally more intuitive.
+*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  caption-side: bottom;
+}
+
+/* ---------- 14. HORIZONTAL RULE ---------- */
+/*
+   - Normalize height and remove the default border across
+     browsers. Some browsers use border, others use height.
+   - color: inherit ensures the line color follows your theme.
+*/
+hr {
+  height: 0;
+  border: 0;
+  border-top: 1px solid currentColor;
+  color: inherit;
+}
+
+/* ---------- 15. ABBREVIATION STYLING ---------- */
+/*
+   Normalize the underline decoration on <abbr> elements
+   with a title attribute. Not all browsers style this
+   consistently — this ensures a dotted underline as a hint
+   that a tooltip is available.
+*/
+abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* ---------- 16. CODE / PREFORMATTED TEXT ---------- */
+/*
+   - Use a monospace font stack for code elements.
+   - font-size: 0.875em (~14px at 16px base) prevents
+     monospace text from appearing larger than surrounding
+     proportional text (a common browser quirk).
+   - overflow-x: auto on <pre> adds a horizontal scrollbar
+     for long code lines instead of breaking the layout.
+*/
+code,
+kbd,
+samp,
+pre {
+  font-family:
+    ui-monospace,
+    'SFMono-Regular',
+    'SF Mono',
+    Menlo,
+    Consolas,
+    'Liberation Mono',
+    monospace;
+  font-size: 0.875em;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre;
+}
+
+/* ---------- 17. STRONG & EMPHASIS ---------- */
+/*
+   Some browsers don't render <b> and <strong> as bold by
+   default in all contexts. This ensures bolder weight is
+   always applied.
+*/
+b,
+strong {
+  font-weight: bolder;
+}
+
+/* ---------- 18. SMALL TEXT ---------- */
+/*
+   Browser default for <small> varies. Setting it to 80%
+   ensures consistency across all browsers.
+*/
+small {
+  font-size: 80%;
+}
+
+/* ---------- 19. SUB & SUPER SCRIPT ---------- */
+/*
+   Prevent <sub> and <sup> from affecting the line-height
+   of their parent element. Without this fix, lines
+   containing subscripts/superscripts will have uneven
+   spacing.
+*/
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* ---------- 20. BLOCKQUOTE & QUOTES ---------- */
+/*
+   Remove default browser indentation and quote marks
+   from blockquotes and <q> elements so you can style
+   them from scratch.
+*/
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
+}
+
+/* ---------- 21. FIELDSET & LEGEND ---------- */
+/*
+   - Remove the default border/padding on <fieldset>
+     for clean form grouping.
+   - Normalize <legend> display so it works consistently
+     across browsers.
+*/
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+legend {
+  display: table;
+  max-width: 100%;
+  white-space: normal;
+}
+
+/* ---------- 22. SUMMARY / DETAILS ELEMENT ---------- */
+/*
+   Ensure <summary> always shows a pointer cursor to
+   indicate it's clickable (toggle for <details>).
+   Not all browsers apply this by default.
+*/
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+/* ---------- 23. DIALOG ELEMENT ---------- */
+/*
+   Normalize the <dialog> element for browsers that
+   support it. Remove default padding and set background
+   to inherit for clean modal styling.
+*/
+dialog {
+  padding: 0;
+}
+
+/* ---------- 24. SEARCH INPUT ---------- */
+/*
+   Remove the non-standard search field decoration
+   and cancel button in WebKit browsers (Safari/Chrome).
+   This ensures search inputs look like regular text
+   inputs for consistent styling.
+*/
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+/* ---------- 25. NUMBER INPUT SPINNERS ---------- */
+/*
+   Remove the up/down spinner arrows on number inputs
+   in WebKit browsers. These arrows are often undesirable
+   in custom-designed forms.
+*/
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove number input spinners in Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* ---------- 26. HIDDEN ATTRIBUTE ---------- */
+/*
+   Ensure the [hidden] attribute actually hides elements.
+   Some older browsers or CSS specificity issues can
+   override this. !important guarantees it works.
+*/
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- 27. FOCUS STYLES ---------- */
+/*
+   - Remove the default outline only for mouse/touch users
+     (:focus:not(:focus-visible)) while preserving it for
+     keyboard users (:focus-visible). This is critical for
+     accessibility — keyboard users need visible focus
+     indicators to navigate.
+   - The :focus-visible outline uses a clear, accessible
+     style with offset for visibility.
+*/
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ---------- 28. REDUCED MOTION ---------- */
+/*
+   Respect the user's OS-level "reduce motion" preference.
+   When enabled, this disables ALL animations, transitions,
+   and smooth scrolling. This is essential for users with
+   vestibular disorders, epilepsy, or motion sensitivity.
+   This is a WCAG accessibility requirement.
+*/
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- 29. PRINT STYLES ---------- */
+/*
+   Basic print optimizations:
+   - Use white background with black text for ink savings.
+   - Remove shadows and text-shadow for cleaner print output.
+   - Avoid page breaks inside images and paragraphs.
+   - Ensure links show their URL in print so readers can
+     visit them (since they can't click on paper).
+*/
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  img {
+    page-break-inside: avoid;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+
+/* ============================================================
+   END OF RESET
+   
+   This reset provides a clean, accessible, and consistent
+   baseline across all modern browsers. Now you can build
+   your design system on top of this foundation with full
+   confidence that browser defaults won't interfere.
+   ============================================================ */
